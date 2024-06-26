@@ -174,25 +174,25 @@
                                                         <label for="divisaoSecaoEntradaEdit" class="form-label">Divisão/Seção</label>
                                                     </div>
                                                     <div class="form-floating mb-3">
-                                                        <select class="form-select" th:value="${entrada.postoGrad}"
+                                                        <select class="form-select"
                                                                 id="postoGradEntradaEdit" name="postoGrad" required>
-                                                            <option>Gen Ex</option>
-                                                            <option>Gen Div</option>
-                                                            <option>Gen Bda</option>
-                                                            <option>Cel</option>
-                                                            <option>TC</option>
-                                                            <option>Maj</option>
-                                                            <option>Cap</option>
-                                                            <option>1º Ten</option>
-                                                            <option>2º Ten</option>
-                                                            <option>Asp</option>
-                                                            <option>ST</option>
-                                                            <option>1º Sgt</option>
-                                                            <option>2º Sgt</option>
-                                                            <option>3º Sgt</option>
-                                                            <option>Cb</option>
-                                                            <option>Sd</option>
-                                                            <option>SC</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Gen Ex'}">Gen Ex</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Gen Div'}">Gen Div</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Gen Bda'}">Gen Bda</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Cel'}">Cel</option>
+                                                            <option th:selected="${entrada.postoGrad == 'TC'}">TC</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Maj'}">Maj</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Cap'}">Cap</option>
+                                                            <option th:selected="${entrada.postoGrad == '1º Ten'}">1º Ten</option>
+                                                            <option th:selected="${entrada.postoGrad == '2º Ten'}">2º Ten</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Asp'}">Asp</option>
+                                                            <option th:selected="${entrada.postoGrad == 'ST'}">ST</option>
+                                                            <option th:selected="${entrada.postoGrad == '1º Sgt'}">1º Sgt</option>
+                                                            <option th:selected="${entrada.postoGrad == '2º Sgt'}">2º Sgt</option>
+                                                            <option th:selected="${entrada.postoGrad == '3º Sgt'}">3º Sgt</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Cb'}">Cb</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Sd'}">Sd</option>
+                                                            <option th:selected="${entrada.postoGrad == 'SC'}">SC</option>
                                                         </select>
                                                         <label for="postoGradEntradaEdit">Posto/Graduação</label>
                                                     </div>
@@ -286,25 +286,25 @@
                                                         <label for="divisaoSecaoSaidaEdit" class="form-label">Divisão/Seção</label>
                                                     </div>
                                                     <div class="form-floating mb-3">
-                                                        <select class="form-select" th:value="${saida.postoGrad}"
+                                                        <select class="form-select"
                                                                 id="postoGradSaidaEdit" name="postoGrad" required>
-                                                            <option>Gen Ex</option>
-                                                            <option>Gen Div</option>
-                                                            <option>Gen Bda</option>
-                                                            <option>Cel</option>
-                                                            <option>TC</option>
-                                                            <option>Maj</option>
-                                                            <option>Cap</option>
-                                                            <option>1º Ten</option>
-                                                            <option>2º Ten</option>
-                                                            <option>Asp</option>
-                                                            <option>ST</option>
-                                                            <option>1º Sgt</option>
-                                                            <option>2º Sgt</option>
-                                                            <option>3º Sgt</option>
-                                                            <option>Cb</option>
-                                                            <option>Sd</option>
-                                                            <option>SC</option>
+                                                            <option th:selected="${saida.postoGrad == 'Gen Ex'}">Gen Ex</option>
+                                                            <option th:selected="${saida.postoGrad == 'Gen Div'}">Gen Div</option>
+                                                            <option th:selected="${saida.postoGrad == 'Gen Bda'}">Gen Bda</option>
+                                                            <option th:selected="${saida.postoGrad == 'Cel'}">Cel</option>
+                                                            <option th:selected="${saida.postoGrad == 'TC'}">TC</option>
+                                                            <option th:selected="${saida.postoGrad == 'Maj'}">Maj</option>
+                                                            <option th:selected="${saida.postoGrad == 'Cap'}">Cap</option>
+                                                            <option th:selected="${saida.postoGrad == '1º Ten'}">1º Ten</option>
+                                                            <option th:selected="${saida.postoGrad == '2º Ten'}">2º Ten</option>
+                                                            <option th:selected="${saida.postoGrad == 'Asp'}">Asp</option>
+                                                            <option th:selected="${saida.postoGrad == 'ST'}">ST</option>
+                                                            <option th:selected="${saida.postoGrad == '1º Sgt'}">1º Sgt</option>
+                                                            <option th:selected="${saida.postoGrad == '2º Sgt'}">2º Sgt</option>
+                                                            <option th:selected="${saida.postoGrad == '3º Sgt'}">3º Sgt</option>
+                                                            <option th:selected="${saida.postoGrad == 'Cb'}">Cb</option>
+                                                            <option th:selected="${saida.postoGrad == 'Sd'}">Sd</option>
+                                                            <option th:selected="${saida.postoGrad == 'SC'}">SC</option>
                                                         </select>
                                                         <label for="postoGradSaidaEdit">Posto/Graduação</label>
                                                     </div>
