@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -74,10 +73,11 @@ public class RegistroController {
     }
 
     @PostMapping("/apagar-tudo")
-    public String apagarTudo(){
+    public String apagarTudo() {
         registroService.apagarTodos();
         return "redirect:/registros";
     }
+
     @GetMapping("/exportar")
     public ResponseEntity<byte[]> exportarDados() {
         List<Entrada> entradas = registroService.listarEntradas();
