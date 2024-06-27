@@ -4,19 +4,14 @@ import br.mil.eb.cds.controle_entrada_saida.dto.FormularioDTO;
 import br.mil.eb.cds.controle_entrada_saida.model.Entrada;
 import br.mil.eb.cds.controle_entrada_saida.model.Saida;
 import br.mil.eb.cds.controle_entrada_saida.service.RegistroService;
+import br.mil.eb.cds.controle_entrada_saida.utils.GerarPlanilha;
 import jakarta.validation.Valid;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -83,55 +78,9 @@ public class RegistroController {
         List<Entrada> entradas = registroService.listarEntradas();
         List<Saida> saidas = registroService.listarSaidas();
 
-        try (Workbook workbook = new XSSFWorkbook()) {
-            Sheet sheetEntradas = workbook.createSheet("Entradas");
-            Sheet sheetSaidas = workbook.createSheet("Saidas");
+        byte[] planilha = GerarPlanilha.exportarDados(entradas, saidas);
 
-            // cabecalhos
-            Row headerEntradas = sheetEntradas.createRow(0);
-            headerEntradas.createCell(0).setCellValue("Div/Sec");
-            headerEntradas.createCell(1).setCellValue("Posto/Grad");
-            headerEntradas.createCell(2).setCellValue("Nome de guerra");
-            headerEntradas.createCell(3).setCellValue("Hora de entrada");
-
-            Row headerSaidas = sheetSaidas.createRow(0);
-            headerSaidas.createCell(0).setCellValue("Div/Sec");
-            headerSaidas.createCell(1).setCellValue("Posto/Grad");
-            headerSaidas.createCell(2).setCellValue("Nome de guerra");
-            headerSaidas.createCell(3).setCellValue("Hora de saida");
-
-            //populando dados das entradas
-
-            int rowNum = 1;
-
-            for (Entrada entrada : entradas) {
-                Row row = sheetEntradas.createRow(rowNum++);
-                row.createCell(0).setCellValue(entrada.getDivSec());
-                row.createCell(1).setCellValue(entrada.getPostoGrad());
-                row.createCell(2).setCellValue(entrada.getNomeGuerra());
-                row.createCell(3).setCellValue(entrada.getHorario().toString());
-            }
-
-            //populando dados das saidas
-
-            rowNum = 1;
-
-            for (Saida saida : saidas) {
-                Row row = sheetSaidas.createRow(rowNum++);
-                row.createCell(0).setCellValue(saida.getDivSec());
-                row.createCell(1).setCellValue(saida.getPostoGrad());
-                row.createCell(2).setCellValue(saida.getNomeGuerra());
-                row.createCell(3).setCellValue(saida.getHorario().toString());
-            }
-
-
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            workbook.write(outputStream);
-
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=registro.xlsx")
-                    .body(outputStream.toByteArray());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=registro.xlsx")
+                .body(planilha);
     }
 }
