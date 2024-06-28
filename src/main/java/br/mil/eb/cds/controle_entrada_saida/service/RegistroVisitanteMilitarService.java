@@ -2,7 +2,6 @@ package br.mil.eb.cds.controle_entrada_saida.service;
 
 import br.mil.eb.cds.controle_entrada_saida.dto.RegistroVisitanteMilitarDTO;
 import br.mil.eb.cds.controle_entrada_saida.model.RegistroVisitanteMilitar;
-import br.mil.eb.cds.controle_entrada_saida.repository.RegistroVisitanteCivilRepository;
 import br.mil.eb.cds.controle_entrada_saida.repository.RegistroVisitanteMilitarRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,18 +11,16 @@ import java.util.List;
 public class RegistroVisitanteMilitarService {
 
     private final RegistroVisitanteMilitarRepository militarRepository;
-    private final RegistroVisitanteCivilRepository registroVisitanteCivilRepository;
 
-    public RegistroVisitanteMilitarService (RegistroVisitanteMilitarRepository militarRepository, RegistroVisitanteCivilRepository registroVisitanteCivilRepository){
+    public RegistroVisitanteMilitarService (RegistroVisitanteMilitarRepository militarRepository){
         this.militarRepository = militarRepository;
-        this.registroVisitanteCivilRepository = registroVisitanteCivilRepository;
     }
 
     public void salvarRegistro(RegistroVisitanteMilitarDTO registroDto){
         RegistroVisitanteMilitar registro = new RegistroVisitanteMilitar();
         registro.setOm(registroDto.om());
         registro.setPostoGrad(registroDto.postoGrad());
-        registro.setNomeGuerra(registroDto.nomeGuerra());
+        registro.setNomeGuerra(registroDto.nomeGuerra().toUpperCase());
         registro.setRamal(registroDto.ramal());
         registro.setHoraEntrada(registroDto.horaEntrada());
         registro.setHoraSaida(registroDto.horaSaida());
@@ -48,7 +45,7 @@ public class RegistroVisitanteMilitarService {
     }
 
     public void apagarRegistro(Long id){
-        registroVisitanteCivilRepository.deleteById(id);
+        militarRepository.deleteById(id);
     }
 
     public void apagarTodos(){

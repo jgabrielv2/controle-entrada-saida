@@ -19,8 +19,8 @@ public class RegistroVisitanteCivilService {
 
     public void salvarRegistro(RegistoVisitanteCivilDTO registroDto){
         RegistroVisitanteCivil registro = new RegistroVisitanteCivil();
-        registro.setNomeCompleto(registroDto.nomeCompleto());
-        registro.setEmpresa(registroDto.empresa());
+        registro.setNomeCompleto(registroDto.nomeCompleto().toUpperCase());
+        registro.setEmpresa(registroDto.empresa().toUpperCase());
         registro.setNumeroTelefone(registroDto.numeroTelefone());
         registro.setHoraEntrada(registroDto.horaEntrada());
         registro.setHoraSaida(registroDto.horaSaida());
