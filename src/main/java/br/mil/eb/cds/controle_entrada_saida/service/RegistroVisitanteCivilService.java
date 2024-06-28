@@ -1,10 +1,9 @@
 package br.mil.eb.cds.controle_entrada_saida.service;
 
-import br.mil.eb.cds.controle_entrada_saida.dto.RegistoVisitanteCivilDTO;
+import br.mil.eb.cds.controle_entrada_saida.dto.RegistroVisitanteCivilDTO;
 import br.mil.eb.cds.controle_entrada_saida.model.RegistroVisitanteCivil;
 import br.mil.eb.cds.controle_entrada_saida.repository.RegistroVisitanteCivilRepository;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class RegistroVisitanteCivilService {
         this.civilRepository = civilRepository;
     }
 
-    public void salvarRegistro(RegistoVisitanteCivilDTO registroDto){
+    public void salvarRegistro(RegistroVisitanteCivilDTO registroDto){
         RegistroVisitanteCivil registro = new RegistroVisitanteCivil();
         registro.setNomeCompleto(registroDto.nomeCompleto().toUpperCase());
         registro.setEmpresa(registroDto.empresa().toUpperCase());
@@ -31,10 +30,10 @@ public class RegistroVisitanteCivilService {
         return civilRepository.findAll();
     }
 
-    public void atualizarRegistro(Long id, RegistoVisitanteCivilDTO registroDto){
+    public void atualizarRegistro(Long id, RegistroVisitanteCivilDTO registroDto){
         RegistroVisitanteCivil registro = civilRepository.getReferenceById(id);
-        registro.setNomeCompleto(registroDto.nomeCompleto());
-        registro.setEmpresa(registroDto.empresa());
+        registro.setNomeCompleto(registroDto.nomeCompleto().toUpperCase());
+        registro.setEmpresa(registroDto.empresa().toUpperCase());
         registro.setNumeroTelefone(registroDto.numeroTelefone());
         registro.setHoraEntrada(registroDto.horaEntrada());
         registro.setHoraSaida(registroDto.horaSaida());

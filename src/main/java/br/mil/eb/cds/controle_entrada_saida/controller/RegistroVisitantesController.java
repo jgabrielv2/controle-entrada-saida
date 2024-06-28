@@ -1,13 +1,12 @@
 package br.mil.eb.cds.controle_entrada_saida.controller;
 
-import br.mil.eb.cds.controle_entrada_saida.dto.RegistoVisitanteCivilDTO;
+import br.mil.eb.cds.controle_entrada_saida.dto.RegistroVisitanteCivilDTO;
 import br.mil.eb.cds.controle_entrada_saida.dto.RegistroVisitanteMilitarDTO;
 import br.mil.eb.cds.controle_entrada_saida.model.RegistroVisitanteCivil;
 import br.mil.eb.cds.controle_entrada_saida.model.RegistroVisitanteMilitar;
 import br.mil.eb.cds.controle_entrada_saida.service.RegistroVisitanteCivilService;
 import br.mil.eb.cds.controle_entrada_saida.service.RegistroVisitanteMilitarService;
 import br.mil.eb.cds.controle_entrada_saida.utils.GerarPlanilhaVisitantes;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -40,13 +39,13 @@ public class RegistroVisitantesController {
     }
 
     @PostMapping("/militar")
-    public String cadastrarMilitar(@Valid RegistroVisitanteMilitarDTO formulario) {
+    public String cadastrarMilitar(RegistroVisitanteMilitarDTO formulario) {
         militarService.salvarRegistro(formulario);
         return "redirect:/visitantes";
     }
 
     @PostMapping("/civil")
-    public String cadastrarCivil(RegistoVisitanteCivilDTO formulario) {
+    public String cadastrarCivil(RegistroVisitanteCivilDTO formulario) {
         civilservice.salvarRegistro(formulario);
         return "redirect:/visitantes";
     }
@@ -58,7 +57,7 @@ public class RegistroVisitantesController {
     }
 
     @PostMapping("/civil/editar/{id}")
-    public String atualizarCivil(@PathVariable Long id, RegistoVisitanteCivilDTO formulario) {
+    public String atualizarCivil(@PathVariable Long id, RegistroVisitanteCivilDTO formulario) {
         civilservice.atualizarRegistro(id, formulario);
         return "redirect:/visitantes";
     }

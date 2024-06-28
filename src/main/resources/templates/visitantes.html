@@ -22,7 +22,7 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <!--Formulário de Visitantes Militares-->
                 <form class="card" th:action="@{/visitantes/militar}" method="post">
-                    <h5 class="card-header">Registrar Militar</h5>
+                    <h5 class="card-header">Registrar militar</h5>
                     <div class="card-body">
 
                         <div class="form-floating mb-3">
@@ -56,7 +56,7 @@
 
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="nomeGuerra" id="nomeGuerraVisitanteMilitar" required>
-                            <label for="nomeGuerraVisitanteMilitar" class="form-label">Nome de Guerra</label>
+                            <label for="nomeGuerraVisitanteMilitar" class="form-label">Nome de guerra</label>
                         </div>
 
                         <div class="form-floating mb-3">
@@ -65,12 +65,12 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="time" class="form-control" id="horarioEntradaVisitanteMilitar" name="horarioEntrada" required>
+                            <input type="time" class="form-control" id="horarioEntradaVisitanteMilitar" name="horaEntrada" required>
                             <label for="horarioEntradaVisitanteMilitar" class="form-label">Horário de entrada</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="time" class="form-control" id="horarioSaidaVisitanteMilitar" name="horarioSaida">
+                            <input type="time" class="form-control" id="horarioSaidaVisitanteMilitar" name="horaSaida">
                             <label for="horarioSaidaVisitanteMilitar" class="form-label">Horário de saida</label>
                         </div>
 
@@ -81,8 +81,9 @@
 
             <div class="col-sm-6">
                 <!--Formulário de Visitantes Civis-->
+                <!-- ATRIBUTO NAME DENTRO DO INPUT DEVE TER O MESMO NOME DO ATRIBUTO NA CLASSE QUE REPRESENTA A ENTIDADE -->
                 <form class="card" th:action="@{/visitantes/civil}" method="post">
-                    <h5 class="card-header">Registrar Civil</h5>
+                    <h5 class="card-header">Registrar civil</h5>
                     <div class="card-body">
 
                         <div class="form-floating mb-3">
@@ -96,17 +97,17 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" name="telefone" id="telefoneVisitanteCivil" required>
+                            <input type="tel" class="form-control" name="numeroTelefone" id="telefoneVisitanteCivil" required>
                             <label for="telefoneVisitanteCivil" class="form-label">Telefone</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="time" class="form-control" id="horarioEntradaVisitanteCivil" name="horarioEntrada" required>
+                            <input type="time" class="form-control" id="horarioEntradaVisitanteCivil" name="horaEntrada" required>
                             <label for="horarioEntradaVisitanteCivil" class="form-label">Horário de entrada</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="time" class="form-control" id="horarioSaidaVisitanteCivil" name="horarioSaida">
+                            <input type="time" class="form-control" id="horarioSaidaVisitanteCivil" name="horaSaida">
                             <label for="horarioSaidaVisitanteCivil" class="form-label">Horário de saida</label>
                         </div>
 
@@ -124,10 +125,10 @@
                     <tr>
                         <th>OM</th>
                         <th>Posto/Graduação</th>
-                        <th>Nome de Guerra</th>
+                        <th>Nome de guerra</th>
                         <th>Ramal</th>
-                        <th>Horário de Entrada</th>
-                        <th>Horário de Saída</th>
+                        <th>Horário de entrada</th>
+                        <th>Horário de saída</th>
                         <th>Ação</th>
                     </tr>
                     </thead>
@@ -136,10 +137,10 @@
                     <tr th:each="militar : ${visitantesMilitares}">
                         <td th:text="${militar.om}">OM</td>
                         <td th:text="${militar.postoGrad}">Posto/Graduação</td>
-                        <td th:text="${militar.nomeGuerra}">Nome de Guerra</td>
+                        <td th:text="${militar.nomeGuerra}">Nome de guerra</td>
                         <td th:text="${militar.ramal}">Ramal</td>
-                        <td th:text="${militar.horaEntrada}">Horário de Entrada</td>
-                        <td th:text="${militar.horaSaida}">Horário de Saída</td>
+                        <td th:text="${militar.horaEntrada}">Horário de entrada</td>
+                        <td th:text="${militar.horaSaida}">Horário de saída</td>
                         <td>
 
                             <!-- Modal edicao dados -->
@@ -159,7 +160,7 @@
                                                     <input type="hidden" th:value="${militar.id}" name="id">
                                                     <div class="form-floating mb-3">
                                                         <input type="text" th:value="${militar.om}"
-                                                               class="form-control" name="divSec"
+                                                               class="form-control" name="om"
                                                                id="omVisitanteMilitarEdit" required>
                                                         <label for="omVisitanteMilitarEdit" class="form-label">OM</label>
                                                     </div>
@@ -191,7 +192,7 @@
                                                                class="form-control" name="nomeGuerra"
                                                                id="nomeGuerraVisitanteMilitarEdit" required>
                                                         <label for="nomeGuerraVisitanteMilitarEdit" class="form-label">Nome de
-                                                            Guerra</label>
+                                                            guerra</label>
                                                     </div>
 
                                                     <div class="form-floating mb-3">
@@ -202,7 +203,7 @@
                                                     <div class="form-floating mb-3">
                                                         <input type="time" th:value="${militar.horaEntrada}"
                                                                class="form-control" id="horarioEntradaVisitanteMilitarEdit"
-                                                               name="horarioEntrada" required>
+                                                               name="horaEntrada" required>
                                                         <label for="horarioEntradaVisitanteMilitarEdit" class="form-label">Horário de
                                                             entrada</label>
                                                     </div>
@@ -210,7 +211,7 @@
                                                     <div class="form-floating mb-3">
                                                         <input type="time" th:value="${militar.horaSaida}"
                                                                class="form-control" id="horarioSaidaVisitanteMilitarEdit"
-                                                               name="horarioSaida">
+                                                               name="horaSaida">
                                                         <label for="horarioSaidaVisitanteMilitarEdit" class="form-label">Horário de
                                                             saída</label>
                                                     </div>
@@ -228,7 +229,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> <!-- FIM MODAL -->
+                            </div> <!-- FIM MODAL EDICAO DADOS -->
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
@@ -244,7 +245,114 @@
                     </tbody>
                 </table>
             </div>
-        </div> <!-- FIM TABELA DE ENTRADAS -->
+        </div> <!-- FIM TABELA DE VISITANTES MILITARES -->
+
+        <!--Tabela de Visitantes Civis -->
+        <div class="card mt-4">
+            <h5 class="card-header">Civis</h5>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nome completo</th>
+                        <th>Empresa</th>
+                        <th>Telefone</th>
+                        <th>Horário de entrada</th>
+                        <th>Horário de saída</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                    <tr th:each="civil : ${visitantesCivis}">
+                        <td th:text="${civil.nomeCompleto}">Nome completo</td>
+                        <td th:text="${civil.empresa}">Empresa</td>
+                        <td th:text="${civil.numeroTelefone}">Telefone</td>
+                        <td th:text="${civil.horaEntrada}">Horário de entrada</td>
+                        <td th:text="${civil.horaSaida}">Horário de saída</td>
+                        <td>
+
+                            <!-- Modal edicao dados -->
+                            <div class="modal fade" th:id="'modalEditVisitanteCivil-' + ${civil.id}" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalEditVisitanteCivilLabel">Editar entrada</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form th:action="@{/visitantes/civil/editar/{id} (id=${civil.id})}"
+                                                  method="post">
+                                                <div>
+                                                    <input type="hidden" th:value="${civil.id}" name="id">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${civil.nomeCompleto}"
+                                                               class="form-control" name="nomeCompleto"
+                                                               id="nomeCompletoVisitanteCivilEdit" required>
+                                                        <label for="nomeCompletoVisitanteCivilEdit" class="form-label">Nome completo</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${civil.empresa}"
+                                                               class="form-control" name="empresa"
+                                                               id="empresaVisitanteCivilEdit" required>
+                                                        <label for="empresaVisitanteCivilEdit" class="form-label">Empresa</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="tel" th:value="${civil.numeroTelefone}" class="form-control" name="numeroTelefone" id="telefoneVisitanteCivilEdit" required>
+                                                        <label for="telefoneVisitanteCivilEdit" class="form-label">Telefone</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" th:value="${civil.horaEntrada}"
+                                                               class="form-control" id="horarioEntradaVisitanteCivilEdit"
+                                                               name="horaEntrada" required>
+                                                        <label for="horarioEntradaVisitanteCivilEdit" class="form-label">Horário de
+                                                            entrada</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" th:value="${civil.horaSaida}"
+                                                               class="form-control" id="horarioSaidaVisitanteCivilEdit"
+                                                               name="horaSaida">
+                                                        <label for="horarioSaidaVisitanteCivilEdit" class="form-label">Horário de
+                                                            saída</label>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- O botão de submit deve estar dentro de um elemento form para funcionar-->
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Fechar
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">Salvar
+                                                            alteraçoes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- FIM MODAL EDICAO DADOS -->
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    th:data-bs-target="'#modalEditVisitanteCivil-' + ${civil.id}">Editar
+                            </button>
+
+                            <form th:action="@{/visitantes/civil/remover/{id}(id=${civil.id})}" method="post"
+                                  style="display: inline">
+                                <button class="btn btn-warning" type="submit">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- FIM TABELA DE VISITANTES CIVIS -->
+
     </div>
 </div>
 </body>

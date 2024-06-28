@@ -36,7 +36,7 @@ public class RegistroVisitanteMilitarService {
         RegistroVisitanteMilitar registro = militarRepository.getReferenceById(id);
         registro.setOm(registroDto.om());
         registro.setPostoGrad(registroDto.postoGrad());
-        registro.setNomeGuerra(registroDto.nomeGuerra());
+        registro.setNomeGuerra(registroDto.nomeGuerra().toUpperCase());
         registro.setRamal(registroDto.ramal());
         registro.setHoraEntrada(registroDto.horaEntrada());
         registro.setHoraSaida(registroDto.horaSaida());
