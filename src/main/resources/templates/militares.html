@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Controle de Entrada e Saída de Militares do CDS</title>
+    <style>
+        body {
+            padding-top: 70px;
+        }
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Controle de Entrada e Saída</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Abertura e Fechamento de Seções</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sistemas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/">Página inicial</a></li>
+                            <li><a class="dropdown-item" href="visitantes">Visitantes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <!--Formulário de Entrada-->
+                <form class="card" th:action="@{/registros/entrada}" method="post">
+                    <h5 class="card-header">Registrar Entrada</h5>
+                    <div class="card-body">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="divSec" id="divisaoSecaoEntrada" required>
+                            <label for="divisaoSecaoEntrada" class="form-label">Divisão/Seção</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="postoGradEntrada" name="postoGrad" required>
+                                <option disabled selected>Selecione</option>
+                                <option>Gen Ex</option>
+                                <option>Gen Div</option>
+                                <option>Gen Bda</option>
+                                <option>Cel</option>
+                                <option>TC</option>
+                                <option>Maj</option>
+                                <option>Cap</option>
+                                <option>1º Ten</option>
+                                <option>2º Ten</option>
+                                <option>Asp</option>
+                                <option>ST</option>
+                                <option>1º Sgt</option>
+                                <option>2º Sgt</option>
+                                <option>3º Sgt</option>
+                                <option>Cb</option>
+                                <option>Sd</option>
+                                <option>SC</option>
+                            </select>
+                            <label for="postoGradEntrada">Posto/Graduação</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="nomeGuerra" id="nomeGuerraEntrada" required>
+                            <label for="nomeGuerraEntrada" class="form-label">Nome de Guerra</label>
+
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="time" class="form-control" id="horarioEntrada" name="horario" required>
+                            <label for="horarioEntrada" class="form-label">Horário de entrada</label>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-6">
+                <!--Formulário de Saída-->
+                <form class="card" th:action="@{/registros/saida}" method="post">
+                    <h5 class="card-header">Registrar Saída</h5>
+                    <div class="card-body">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="divSec" id="divisaoSecaoSaida" required>
+                            <label for="divisaoSecaoSaida" class="form-label">Divisão/Seção</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="postoGradSaida" name="postoGrad" required>
+                                <option selected>Selecione</option>
+                                <option>Gen Ex</option>
+                                <option>Gen Div</option>
+                                <option>Gen Bda</option>
+                                <option>Cel</option>
+                                <option>TC</option>
+                                <option>Maj</option>
+                                <option>Cap</option>
+                                <option>1º Ten</option>
+                                <option>2º Ten</option>
+                                <option>Asp</option>
+                                <option>ST</option>
+                                <option>1º Sgt</option>
+                                <option>2º Sgt</option>
+                                <option>3º Sgt</option>
+                                <option>Cb</option>
+                                <option>Sd</option>
+                                <option>SC</option>
+                            </select>
+                            <label for="postoGradSaida" class="form-label">Posto/Graduação</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="nomeGuerra" id="nomeGuerraSaida" required>
+                            <label for="nomeGuerraSaida" class="form-label">Nome de Guerra</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="time" class="form-control" id="horarioSaida" name="horario" required>
+                            <label for="horarioSaida" class="form-label">Horário de saída</label>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--Tabela de Entradas -->
+        <div class="card mt-4">
+            <h5 class="card-header">Entradas</h5>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Divisão/Seção</th>
+                        <th>Posto/Graduação</th>
+                        <th>Nome de Guerra</th>
+                        <th>Horário de Entrada</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                    <tr th:each="entrada : ${entradas}">
+                        <td th:text="${entrada.divSec}">Divisão/Seção</td>
+                        <td th:text="${entrada.postoGrad}">Posto/Graduação</td>
+                        <td th:text="${entrada.nomeGuerra}">Nome de Guerra</td>
+                        <td th:text="${entrada.horario}">Horário de Entrada</td>
+                        <td>
+
+                            <!-- Modal -->
+                            <div class="modal fade" th:id="'modalEditEntrada-' + ${entrada.id}" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalEditEntradaLabel">Editar entrada</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form th:action="@{/registros/entrada/editar/{id} (id=${entrada.id})}"
+                                                  method="post">
+                                                <div>
+                                                    <input type="hidden" th:value="${entrada.id}" name="id">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${entrada.divSec}"
+                                                               class="form-control" name="divSec"
+                                                               id="divisaoSecaoEntradaEdit" required>
+                                                        <label for="divisaoSecaoEntradaEdit" class="form-label">Divisão/Seção</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select"
+                                                                id="postoGradEntradaEdit" name="postoGrad" required>
+                                                            <option th:selected="${entrada.postoGrad == 'Gen Ex'}">Gen Ex</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Gen Div'}">Gen Div</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Gen Bda'}">Gen Bda</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Cel'}">Cel</option>
+                                                            <option th:selected="${entrada.postoGrad == 'TC'}">TC</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Maj'}">Maj</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Cap'}">Cap</option>
+                                                            <option th:selected="${entrada.postoGrad == '1º Ten'}">1º Ten</option>
+                                                            <option th:selected="${entrada.postoGrad == '2º Ten'}">2º Ten</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Asp'}">Asp</option>
+                                                            <option th:selected="${entrada.postoGrad == 'ST'}">ST</option>
+                                                            <option th:selected="${entrada.postoGrad == '1º Sgt'}">1º Sgt</option>
+                                                            <option th:selected="${entrada.postoGrad == '2º Sgt'}">2º Sgt</option>
+                                                            <option th:selected="${entrada.postoGrad == '3º Sgt'}">3º Sgt</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Cb'}">Cb</option>
+                                                            <option th:selected="${entrada.postoGrad == 'Sd'}">Sd</option>
+                                                            <option th:selected="${entrada.postoGrad == 'SC'}">SC</option>
+                                                        </select>
+                                                        <label for="postoGradEntradaEdit">Posto/Graduação</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${entrada.nomeGuerra}"
+                                                               class="form-control" name="nomeGuerra"
+                                                               id="nomeGuerraEntradaEdit" required>
+                                                        <label for="nomeGuerraEntradaEdit" class="form-label">Nome de
+                                                            Guerra</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" th:value="${entrada.horario}"
+                                                               class="form-control" id="horarioEntradaEdit"
+                                                               name="horario" required>
+                                                        <label for="horarioEntradaEdit" class="form-label">Horário de
+                                                            entrada</label>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- O botão de submit deve estar dentro de um elemento form para funcionar-->
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Fechar
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">Salvar
+                                                            alteraçoes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- FIM MODAL -->
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    th:data-bs-target="'#modalEditEntrada-' + ${entrada.id}">Editar
+                            </button>
+
+                            <form th:action="@{/registros/entrada/remover/{id}(id=${entrada.id})}" method="post"
+                                  style="display: inline">
+                                <button class="btn btn-warning" type="submit">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- FIM TABELA DE ENTRADAS -->
+        <!--Tabela de Saídas -->
+        <div class="card mt-4">
+            <h5 class="card-header">Saídas</h5>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Divisão/Seção</th>
+                        <th>Posto/Graduação</th>
+                        <th>Nome de Guerra</th>
+                        <th>Horário de Saída</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                    <tr th:each="saida : ${saidas}">
+                        <td th:text="${saida.divSec}">Divisão/Seção</td>
+                        <td th:text="${saida.postoGrad}">Posto/Graduação</td>
+                        <td th:text="${saida.nomeGuerra}">Nome de Guerra</td>
+                        <td th:text="${saida.horario}">Horário de Entrada</td>
+                        <td>
+
+                            <!-- Modal -->
+                            <div class="modal fade" th:id="'modalEditSaida' + ${saida.id}" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalEditSaidaLabel">Editar registro</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form th:action="@{/registros/saida/editar/{id} (id=${saida.id})}"
+                                                  method="post">
+                                                <div>
+                                                    <input type="hidden" th:value="${saida.id}" name="id">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${saida.divSec}"
+                                                               class="form-control" name="divSec"
+                                                               id="divisaoSecaoSaidaEdit" required>
+                                                        <label for="divisaoSecaoSaidaEdit" class="form-label">Divisão/Seção</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select"
+                                                                id="postoGradSaidaEdit" name="postoGrad" required>
+                                                            <option th:selected="${saida.postoGrad == 'Gen Ex'}">Gen Ex</option>
+                                                            <option th:selected="${saida.postoGrad == 'Gen Div'}">Gen Div</option>
+                                                            <option th:selected="${saida.postoGrad == 'Gen Bda'}">Gen Bda</option>
+                                                            <option th:selected="${saida.postoGrad == 'Cel'}">Cel</option>
+                                                            <option th:selected="${saida.postoGrad == 'TC'}">TC</option>
+                                                            <option th:selected="${saida.postoGrad == 'Maj'}">Maj</option>
+                                                            <option th:selected="${saida.postoGrad == 'Cap'}">Cap</option>
+                                                            <option th:selected="${saida.postoGrad == '1º Ten'}">1º Ten</option>
+                                                            <option th:selected="${saida.postoGrad == '2º Ten'}">2º Ten</option>
+                                                            <option th:selected="${saida.postoGrad == 'Asp'}">Asp</option>
+                                                            <option th:selected="${saida.postoGrad == 'ST'}">ST</option>
+                                                            <option th:selected="${saida.postoGrad == '1º Sgt'}">1º Sgt</option>
+                                                            <option th:selected="${saida.postoGrad == '2º Sgt'}">2º Sgt</option>
+                                                            <option th:selected="${saida.postoGrad == '3º Sgt'}">3º Sgt</option>
+                                                            <option th:selected="${saida.postoGrad == 'Cb'}">Cb</option>
+                                                            <option th:selected="${saida.postoGrad == 'Sd'}">Sd</option>
+                                                            <option th:selected="${saida.postoGrad == 'SC'}">SC</option>
+                                                        </select>
+                                                        <label for="postoGradSaidaEdit">Posto/Graduação</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${saida.nomeGuerra}"
+                                                               class="form-control" name="nomeGuerra"
+                                                               id="nomeGuerraSaidaEdit" required>
+                                                        <label for="nomeGuerraSaidaEdit" class="form-label">Nome de
+                                                            Guerra</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" th:value="${saida.horario}"
+                                                               class="form-control" id="horarioSaidaEdit" name="horario"
+                                                               required>
+                                                        <label for="horarioSaidaEdit" class="form-label">Horário de
+                                                            saída</label>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- O botão de submit deve estar dentro de um elemento form para funcionar-->
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Fechar
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">Salvar
+                                                            alteraçoes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- FIM MODAL -->
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    th:data-bs-target="'#modalEditSaida' + ${saida.id}">Editar
+                            </button>
+                            <form th:action="@{/registros/saida/remover/{id}(id=${saida.id})}" method="post"
+                                  style="display: inline">
+                                <button class="btn btn-warning" type="submit">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+        <!--Botao para exportar os dados e apagar dados-->
+        <div class="d-flex justify-content-between mt-4">
+            <a th:href="@{/registros/exportar}" class="btn btn-success">Gerar Planilha</a>
+            <!-- Button trigger modal apagar tudo -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdropApagarTudo">
+                Apagar tudo
+            </button>
+
+        </div>
+
+        <!-- Modal apagar tudo -->
+        <div class="modal fade" id="staticBackdropApagarTudo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Atenção</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Ao fazer isto, todos os dados serão perdidos.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <form th:action="@{/registros/apagar-tudo}" method="post" style="display:inline">
+                            <button class="btn btn-danger" type="submit">Apagar tudo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

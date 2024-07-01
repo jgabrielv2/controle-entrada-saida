@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class GerarPlanilha {
+public class GerarPlanilhaMilitares {
 
     public static byte[] exportarDados(List<Entrada> entradas, List<Saida> saidas) {
 

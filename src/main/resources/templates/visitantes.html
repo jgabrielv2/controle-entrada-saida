@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<title>Controle de visitantes</title>
+<style> body { padding-top: 70px;}</style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Controle de Entrada e Saída</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Visitantes Militares e Civis</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sistemas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/">Página inicial</a></li>
+                            <li><a class="dropdown-item" href="registros">Abertura e fechamento de seções </a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <!--Formulário de Visitantes Militares-->
+                <form class="card" th:action="@{/visitantes/militar}" method="post">
+                    <h5 class="card-header">Registrar militar</h5>
+                    <div class="card-body">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="om" id="omVisitanteMilitar" required>
+                            <label for="omVisitanteMilitar" class="form-label">OM</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="postoGradVisitanteMilitar" name="postoGrad" required>
+                                <option disabled selected>Selecione</option>
+                                <option>Gen Ex</option>
+                                <option>Gen Div</option>
+                                <option>Gen Bda</option>
+                                <option>Cel</option>
+                                <option>TC</option>
+                                <option>Maj</option>
+                                <option>Cap</option>
+                                <option>1º Ten</option>
+                                <option>2º Ten</option>
+                                <option>Asp</option>
+                                <option>ST</option>
+                                <option>1º Sgt</option>
+                                <option>2º Sgt</option>
+                                <option>3º Sgt</option>
+                                <option>Cb</option>
+                                <option>Sd</option>
+                                <option>SC</option>
+                            </select>
+                            <label for="postoGradVisitanteMilitar">Posto/Graduação</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="nomeGuerra" id="nomeGuerraVisitanteMilitar" required>
+                            <label for="nomeGuerraVisitanteMilitar" class="form-label">Nome de guerra</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" name="ramal" id="ramalVisitanteMilitar" required>
+                            <label for="ramalVisitanteMilitar" class="form-label">Ramal</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="time" class="form-control" id="horarioEntradaVisitanteMilitar" name="horaEntrada" required>
+                            <label for="horarioEntradaVisitanteMilitar" class="form-label">Horário de entrada</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="time" class="form-control" id="horarioSaidaVisitanteMilitar" name="horaSaida">
+                            <label for="horarioSaidaVisitanteMilitar" class="form-label">Horário de saida</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-6">
+                <!--Formulário de Visitantes Civis-->
+                <!-- ATRIBUTO NAME DENTRO DO INPUT DEVE TER O MESMO NOME DO ATRIBUTO NA CLASSE QUE REPRESENTA A ENTIDADE -->
+                <form class="card" th:action="@{/visitantes/civil}" method="post">
+                    <h5 class="card-header">Registrar civil</h5>
+                    <div class="card-body">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="nomeCompleto" id="nomeCompletoVisitanteCivil" required>
+                            <label for="nomeCompletoVisitanteCivil" class="form-label">Nome completo</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="empresa" id="empresaVisitanteCivil" required>
+                            <label for="empresaVisitanteCivil" class="form-label">Empresa</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" name="numeroTelefone" id="telefoneVisitanteCivil" required>
+                            <label for="telefoneVisitanteCivil" class="form-label">Telefone</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="time" class="form-control" id="horarioEntradaVisitanteCivil" name="horaEntrada" required>
+                            <label for="horarioEntradaVisitanteCivil" class="form-label">Horário de entrada</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="time" class="form-control" id="horarioSaidaVisitanteCivil" name="horaSaida">
+                            <label for="horarioSaidaVisitanteCivil" class="form-label">Horário de saida</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Tabela de Visitantes Militares -->
+        <div class="card mt-4">
+            <h5 class="card-header">Militares</h5>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>OM</th>
+                        <th>Posto/Graduação</th>
+                        <th>Nome de guerra</th>
+                        <th>Ramal</th>
+                        <th>Horário de entrada</th>
+                        <th>Horário de saída</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                    <tr th:each="militar : ${visitantesMilitares}">
+                        <td th:text="${militar.om}">OM</td>
+                        <td th:text="${militar.postoGrad}">Posto/Graduação</td>
+                        <td th:text="${militar.nomeGuerra}">Nome de guerra</td>
+                        <td th:text="${militar.ramal}">Ramal</td>
+                        <td th:text="${militar.horaEntrada}">Horário de entrada</td>
+                        <td th:text="${militar.horaSaida}">Horário de saída</td>
+                        <td>
+
+                            <!-- Modal edicao dados -->
+                            <div class="modal fade" th:id="'modalEditVisitanteMilitar-' + ${militar.id}" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalEditVisitanteMilitarLabel">Editar entrada</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form th:action="@{/visitantes/militar/editar/{id} (id=${militar.id})}"
+                                                  method="post">
+                                                <div>
+                                                    <input type="hidden" th:value="${militar.id}" name="id">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${militar.om}"
+                                                               class="form-control" name="om"
+                                                               id="omVisitanteMilitarEdit" required>
+                                                        <label for="omVisitanteMilitarEdit" class="form-label">OM</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-select"
+                                                                id="postoGradVisitanteMilitarEdit" name="postoGrad" required>
+                                                            <option th:selected="${militar.postoGrad == 'Gen Ex'}">Gen Ex</option>
+                                                            <option th:selected="${militar.postoGrad == 'Gen Div'}">Gen Div</option>
+                                                            <option th:selected="${militar.postoGrad == 'Gen Bda'}">Gen Bda</option>
+                                                            <option th:selected="${militar.postoGrad == 'Cel'}">Cel</option>
+                                                            <option th:selected="${militar.postoGrad == 'TC'}">TC</option>
+                                                            <option th:selected="${militar.postoGrad == 'Maj'}">Maj</option>
+                                                            <option th:selected="${militar.postoGrad == 'Cap'}">Cap</option>
+                                                            <option th:selected="${militar.postoGrad == '1º Ten'}">1º Ten</option>
+                                                            <option th:selected="${militar.postoGrad == '2º Ten'}">2º Ten</option>
+                                                            <option th:selected="${militar.postoGrad == 'Asp'}">Asp</option>
+                                                            <option th:selected="${militar.postoGrad == 'ST'}">ST</option>
+                                                            <option th:selected="${militar.postoGrad == '1º Sgt'}">1º Sgt</option>
+                                                            <option th:selected="${militar.postoGrad == '2º Sgt'}">2º Sgt</option>
+                                                            <option th:selected="${militar.postoGrad == '3º Sgt'}">3º Sgt</option>
+                                                            <option th:selected="${militar.postoGrad == 'Cb'}">Cb</option>
+                                                            <option th:selected="${militar.postoGrad == 'Sd'}">Sd</option>
+                                                            <option th:selected="${militar.postoGrad == 'SC'}">SC</option>
+                                                        </select>
+                                                        <label for="postoGradVisitanteMilitarEdit">Posto/Graduação</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${militar.nomeGuerra}"
+                                                               class="form-control" name="nomeGuerra"
+                                                               id="nomeGuerraVisitanteMilitarEdit" required>
+                                                        <label for="nomeGuerraVisitanteMilitarEdit" class="form-label">Nome de
+                                                            guerra</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="tel" th:value="${militar.ramal}" class="form-control" name="ramal" id="ramalVisitanteMilitarEdit" required>
+                                                        <label for="ramalVisitanteMilitarEdit" class="form-label">Ramal</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" th:value="${militar.horaEntrada}"
+                                                               class="form-control" id="horarioEntradaVisitanteMilitarEdit"
+                                                               name="horaEntrada" required>
+                                                        <label for="horarioEntradaVisitanteMilitarEdit" class="form-label">Horário de
+                                                            entrada</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" th:value="${militar.horaSaida}"
+                                                               class="form-control" id="horarioSaidaVisitanteMilitarEdit"
+                                                               name="horaSaida">
+                                                        <label for="horarioSaidaVisitanteMilitarEdit" class="form-label">Horário de
+                                                            saída</label>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- O botão de submit deve estar dentro de um elemento form para funcionar-->
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Fechar
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">Salvar
+                                                            alteraçoes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- FIM MODAL EDICAO DADOS -->
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    th:data-bs-target="'#modalEditVisitanteMilitar-' + ${militar.id}">Editar
+                            </button>
+
+                            <form th:action="@{/visitantes/militar/remover/{id}(id=${militar.id})}" method="post"
+                                  style="display: inline">
+                                <button class="btn btn-warning" type="submit">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- FIM TABELA DE VISITANTES MILITARES -->
+
+        <!--Tabela de Visitantes Civis -->
+        <div class="card mt-4">
+            <h5 class="card-header">Civis</h5>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nome completo</th>
+                        <th>Empresa</th>
+                        <th>Telefone</th>
+                        <th>Horário de entrada</th>
+                        <th>Horário de saída</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                    <tr th:each="civil : ${visitantesCivis}">
+                        <td th:text="${civil.nomeCompleto}">Nome completo</td>
+                        <td th:text="${civil.empresa}">Empresa</td>
+                        <td th:text="${civil.numeroTelefone}">Telefone</td>
+                        <td th:text="${civil.horaEntrada}">Horário de entrada</td>
+                        <td th:text="${civil.horaSaida}">Horário de saída</td>
+                        <td>
+
+                            <!-- Modal edicao dados -->
+                            <div class="modal fade" th:id="'modalEditVisitanteCivil-' + ${civil.id}" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modalEditVisitanteCivilLabel">Editar entrada</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form th:action="@{/visitantes/civil/editar/{id} (id=${civil.id})}"
+                                                  method="post">
+                                                <div>
+                                                    <input type="hidden" th:value="${civil.id}" name="id">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${civil.nomeCompleto}"
+                                                               class="form-control" name="nomeCompleto"
+                                                               id="nomeCompletoVisitanteCivilEdit" required>
+                                                        <label for="nomeCompletoVisitanteCivilEdit" class="form-label">Nome completo</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" th:value="${civil.empresa}"
+                                                               class="form-control" name="empresa"
+                                                               id="empresaVisitanteCivilEdit" required>
+                                                        <label for="empresaVisitanteCivilEdit" class="form-label">Empresa</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="tel" th:value="${civil.numeroTelefone}" class="form-control" name="numeroTelefone" id="telefoneVisitanteCivilEdit" required>
+                                                        <label for="telefoneVisitanteCivilEdit" class="form-label">Telefone</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" th:value="${civil.horaEntrada}"
+                                                               class="form-control" id="horarioEntradaVisitanteCivilEdit"
+                                                               name="horaEntrada" required>
+                                                        <label for="horarioEntradaVisitanteCivilEdit" class="form-label">Horário de
+                                                            entrada</label>
+                                                    </div>
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="time" th:value="${civil.horaSaida}"
+                                                               class="form-control" id="horarioSaidaVisitanteCivilEdit"
+                                                               name="horaSaida">
+                                                        <label for="horarioSaidaVisitanteCivilEdit" class="form-label">Horário de
+                                                            saída</label>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- O botão de submit deve estar dentro de um elemento form para funcionar-->
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Fechar
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary">Salvar
+                                                            alteraçoes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- FIM MODAL EDICAO DADOS -->
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    th:data-bs-target="'#modalEditVisitanteCivil-' + ${civil.id}">Editar
+                            </button>
+
+                            <form th:action="@{/visitantes/civil/remover/{id}(id=${civil.id})}" method="post"
+                                  style="display: inline">
+                                <button class="btn btn-warning" type="submit">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- FIM TABELA DE VISITANTES CIVIS -->
+
+    </div>
+</div>
+</body>
+</html>

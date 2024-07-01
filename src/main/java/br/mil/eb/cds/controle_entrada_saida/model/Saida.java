@@ -58,8 +58,4 @@ public class Saida {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }
