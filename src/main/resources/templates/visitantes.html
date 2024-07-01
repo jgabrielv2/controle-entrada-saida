@@ -29,7 +29,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/">Página inicial</a></li>
-                            <li><a class="dropdown-item" href="registros">Abertura e fechamento de seções </a></li>
+                            <li><a class="dropdown-item" href="secoes">Abertura e fechamento de seções </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -375,6 +375,37 @@
                 </table>
             </div>
         </div> <!-- FIM TABELA DE VISITANTES CIVIS -->
+
+        <!--Botao para exportar os dados e apagar dados-->
+        <div class="d-flex justify-content-between mt-4">
+            <a th:href="@{/visitantes/exportar}" class="btn btn-success">Gerar Planilha</a>
+            <!-- Button trigger modal apagar tudo -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdropApagarTudo">
+                Apagar tudo
+            </button>
+
+        </div>
+
+        <!-- Modal apagar tudo -->
+        <div class="modal fade" id="staticBackdropApagarTudo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Atenção</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Ao fazer isto, todos os dados serão perdidos.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <form th:action="@{/visitantes/apagar-tudo}" method="post" style="display:inline">
+                            <button class="btn btn-danger" type="submit">Apagar tudo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- fim modal apagar tudo -->
 
     </div>
 </div>

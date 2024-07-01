@@ -34,7 +34,7 @@ public class RegistroVisitanteCivil {
     }
 
     public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+        this.nomeCompleto = nomeCompleto.toUpperCase();
     }
 
     public String getEmpresa() {
@@ -42,7 +42,7 @@ public class RegistroVisitanteCivil {
     }
 
     public void setEmpresa(String empresa) {
-        this.empresa = empresa;
+        this.empresa = empresa.toUpperCase();
     }
 
     public String getNumeroTelefone() {
