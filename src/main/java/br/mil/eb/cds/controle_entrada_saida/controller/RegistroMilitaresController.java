@@ -4,7 +4,7 @@ import br.mil.eb.cds.controle_entrada_saida.dto.FormularioDTO;
 import br.mil.eb.cds.controle_entrada_saida.model.Entrada;
 import br.mil.eb.cds.controle_entrada_saida.model.Saida;
 import br.mil.eb.cds.controle_entrada_saida.service.RegistroService;
-import br.mil.eb.cds.controle_entrada_saida.utils.GerarPlanilhaMilitares;
+import br.mil.eb.cds.controle_entrada_saida.utils.GerarPlanilhaControleSecoes;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -80,7 +80,7 @@ public class RegistroMilitaresController {
         List<Entrada> entradas = registroService.listarEntradas();
         List<Saida> saidas = registroService.listarSaidas();
 
-        byte[] planilha = GerarPlanilhaMilitares.exportarDados(entradas, saidas);
+        byte[] planilha = GerarPlanilhaControleSecoes.exportarDados(entradas, saidas);
 
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=registro_secoes_"+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm")) + ".xlsx")
                 .body(planilha);

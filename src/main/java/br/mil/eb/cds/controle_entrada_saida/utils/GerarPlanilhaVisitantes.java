@@ -1,9 +1,7 @@
 package br.mil.eb.cds.controle_entrada_saida.utils;
 
-import br.mil.eb.cds.controle_entrada_saida.model.Entrada;
 import br.mil.eb.cds.controle_entrada_saida.model.RegistroVisitanteCivil;
 import br.mil.eb.cds.controle_entrada_saida.model.RegistroVisitanteMilitar;
-import br.mil.eb.cds.controle_entrada_saida.model.Saida;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
