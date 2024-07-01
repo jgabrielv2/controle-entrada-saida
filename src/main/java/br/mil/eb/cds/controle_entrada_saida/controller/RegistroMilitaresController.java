@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -28,7 +30,7 @@ public class RegistroMilitaresController {
     public String home(ModelMap model) {
         model.addAttribute("entradas", registroService.listarEntradas());
         model.addAttribute("saidas", registroService.listarSaidas());
-        return "home";
+        return "militares";
     }
 
     @PostMapping("/entrada")
@@ -80,7 +82,7 @@ public class RegistroMilitaresController {
 
         byte[] planilha = GerarPlanilhaMilitares.exportarDados(entradas, saidas);
 
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=registro.xlsx")
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=registro_secoes_"+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm")) + ".xlsx")
                 .body(planilha);
     }
 }
