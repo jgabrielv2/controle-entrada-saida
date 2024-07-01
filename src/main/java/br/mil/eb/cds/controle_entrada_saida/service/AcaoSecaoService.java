@@ -69,5 +69,4 @@ public class AcaoSecaoService {
     public List<AcaoSecao> listarSaidas() {
         return acaoRepository.findByTipo(TipoAcaoSecao.SAIDA);
     }
-
 }

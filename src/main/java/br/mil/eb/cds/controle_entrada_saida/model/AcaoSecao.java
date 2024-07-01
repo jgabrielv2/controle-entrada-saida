@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "acao_secao")
@@ -70,7 +71,7 @@ public class AcaoSecao {
     }
 
     public void setNomeGuerra(String nomeGuerra) {
-        this.nomeGuerra = nomeGuerra;
+        this.nomeGuerra = nomeGuerra.toUpperCase();
     }
 
     public LocalTime getHorario() {
@@ -81,4 +82,22 @@ public class AcaoSecao {
         this.horario = horario;
     }
 
+    @Override
+    public String toString() {
+        return "AcaoSecao{" +
+                "id=" + id +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AcaoSecao acaoSecao)) return false;
+        return Objects.equals(id, acaoSecao.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
