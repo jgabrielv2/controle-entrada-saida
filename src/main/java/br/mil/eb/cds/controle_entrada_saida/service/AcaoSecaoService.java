@@ -4,22 +4,16 @@ import br.mil.eb.cds.controle_entrada_saida.dto.AcaoSecaoDto;
 import br.mil.eb.cds.controle_entrada_saida.enums.TipoAcaoSecao;
 import br.mil.eb.cds.controle_entrada_saida.model.AcaoSecao;
 import br.mil.eb.cds.controle_entrada_saida.repository.AcaoSecaoRepository;
-import br.mil.eb.cds.controle_entrada_saida.repository.EntradaRepository;
-import br.mil.eb.cds.controle_entrada_saida.repository.SaidaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class AcaoSecaoService {
-    private final EntradaRepository entradaRepository;
-    private final SaidaRepository saidaRepository;
     private final AcaoSecaoRepository acaoRepository;
 
-    public AcaoSecaoService(AcaoSecaoRepository acaoRepository, EntradaRepository entradaRepository, SaidaRepository saidaRepository) {
+    public AcaoSecaoService(AcaoSecaoRepository acaoRepository) {
         this.acaoRepository = acaoRepository;
-        this.entradaRepository = entradaRepository;
-        this.saidaRepository = saidaRepository;
     }
 
     public void salvarEntrada(AcaoSecaoDto formulario) {
@@ -65,8 +59,7 @@ public class AcaoSecaoService {
 
 
     public void apagarTodos() {
-        entradaRepository.deleteAll();
-        saidaRepository.deleteAll();
+        acaoRepository.deleteAll();
     }
 
     public List<AcaoSecao> listarEntradas() {
