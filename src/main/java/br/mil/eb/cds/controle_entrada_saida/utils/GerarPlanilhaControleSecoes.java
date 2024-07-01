@@ -1,7 +1,6 @@
 package br.mil.eb.cds.controle_entrada_saida.utils;
 
-import br.mil.eb.cds.controle_entrada_saida.model.Entrada;
-import br.mil.eb.cds.controle_entrada_saida.model.Saida;
+import br.mil.eb.cds.controle_entrada_saida.model.AcaoSecao;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -11,7 +10,7 @@ import java.util.List;
 
 public class GerarPlanilhaControleSecoes {
 
-    public static byte[] exportarDados(List<Entrada> entradas, List<Saida> saidas) {
+    public static byte[] exportarDados(List<AcaoSecao> entradas, List<AcaoSecao> saidas) {
 
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheetEntradas = workbook.createSheet("Entradas");
@@ -58,7 +57,7 @@ public class GerarPlanilhaControleSecoes {
             //populando dados das entradas
             int rowNum = 1;
 
-            for (Entrada entrada : entradas) {
+            for (AcaoSecao entrada : entradas) {
                 Row row = sheetEntradas.createRow(rowNum++);
                 row.createCell(0).setCellValue(entrada.getDivSec());
                 row.createCell(1).setCellValue(entrada.getPostoGrad());
@@ -72,7 +71,7 @@ public class GerarPlanilhaControleSecoes {
             //populando dados das saidas
             rowNum = 1;
 
-            for (Saida saida : saidas) {
+            for (AcaoSecao saida : saidas) {
                 Row row = sheetSaidas.createRow(rowNum++);
                 row.createCell(0).setCellValue(saida.getDivSec());
                 row.createCell(1).setCellValue(saida.getPostoGrad());

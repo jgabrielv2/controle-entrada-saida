@@ -51,7 +51,7 @@
         <div class="row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <!--Formulário de Entrada-->
-                <form class="card" th:action="@{/registros/entrada}" method="post">
+                <form class="card" th:action="@{/secoes/entrada}" method="post">
                     <h5 class="card-header">Registrar Entrada</h5>
                     <div class="card-body">
 
@@ -103,7 +103,7 @@
 
             <div class="col-sm-6">
                 <!--Formulário de Saída-->
-                <form class="card" th:action="@{/registros/saida}" method="post">
+                <form class="card" th:action="@{/secoes/saida}" method="post">
                     <h5 class="card-header">Registrar Saída</h5>
                     <div class="card-body">
                         <div class="form-floating mb-3">
@@ -186,7 +186,7 @@
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form th:action="@{/registros/entrada/editar/{id} (id=${entrada.id})}"
+                                            <form th:action="@{/secoes/editar/{id} (id=${entrada.id})}"
                                                   method="post">
                                                 <div>
                                                     <input type="hidden" th:value="${entrada.id}" name="id">
@@ -254,7 +254,7 @@
                                     th:data-bs-target="'#modalEditEntrada-' + ${entrada.id}">Editar
                             </button>
 
-                            <form th:action="@{/registros/entrada/remover/{id}(id=${entrada.id})}" method="post"
+                            <form th:action="@{/secoes/remover/{id}(id=${entrada.id})}" method="post"
                                   style="display: inline">
                                 <button class="btn btn-warning" type="submit">Remover</button>
                             </form>
@@ -298,7 +298,7 @@
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form th:action="@{/registros/saida/editar/{id} (id=${saida.id})}"
+                                            <form th:action="@{/secoes/editar/{id} (id=${saida.id})}"
                                                   method="post">
                                                 <div>
                                                     <input type="hidden" th:value="${saida.id}" name="id">
@@ -365,7 +365,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                     th:data-bs-target="'#modalEditSaida' + ${saida.id}">Editar
                             </button>
-                            <form th:action="@{/registros/saida/remover/{id}(id=${saida.id})}" method="post"
+                            <form th:action="@{/secoes/remover/{id}(id=${saida.id})}" method="post"
                                   style="display: inline">
                                 <button class="btn btn-warning" type="submit">Remover</button>
                             </form>
@@ -378,7 +378,7 @@
 
         <!--Botao para exportar os dados e apagar dados-->
         <div class="d-flex justify-content-between mt-4">
-            <a th:href="@{/registros/exportar}" class="btn btn-success">Gerar Planilha</a>
+            <a th:href="@{/secoes/exportar}" class="btn btn-success">Gerar Planilha</a>
             <!-- Button trigger modal apagar tudo -->
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdropApagarTudo">
                 Apagar tudo
@@ -399,7 +399,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <form th:action="@{/registros/apagar-tudo}" method="post" style="display:inline">
+                        <form th:action="@{/secoes/remover-tudo}" method="post" style="display:inline">
                             <button class="btn btn-danger" type="submit">Apagar tudo</button>
                         </form>
                     </div>
