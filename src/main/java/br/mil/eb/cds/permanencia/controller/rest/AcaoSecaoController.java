@@ -1,12 +1,15 @@
 package br.mil.eb.cds.permanencia.controller.rest;
 
 import br.mil.eb.cds.permanencia.dto.AcaoSecaoDto;
+import br.mil.eb.cds.permanencia.enums.TipoAcaoSecao;
 import br.mil.eb.cds.permanencia.model.AcaoSecao;
 import br.mil.eb.cds.permanencia.service.AcaoSecaoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/secoes")
@@ -18,49 +21,40 @@ public class AcaoSecaoController {
         this.acaoService = acaoService;
     }
 
-
-    @PostMapping("/entrada")
-    public ResponseEntity<AcaoSecao> cadastrarEntrada(@RequestBody @Valid AcaoSecaoDto formulario, UriComponentsBuilder uriComponentsBuilder) {
-        var acao = acaoService.salvarEntrada(formulario);
+    @PostMapping
+    public ResponseEntity<AcaoSecao> cadastrarAcao(@RequestBody @Valid AcaoSecaoDto formulario, UriComponentsBuilder uriComponentsBuilder) {
+        var acao = acaoService.salvarAcao(formulario);
         var uri = uriComponentsBuilder.path("/api/secoes/{id}")
                 .buildAndExpand(acao.getId()).toUri();
         return ResponseEntity.created(uri).body(acao);
     }
 
-    @PostMapping("/saida")
-    public String cadastrarSaida(@Valid AcaoSecaoDto formulario) {
-        acaoService.salvarSaida(formulario);
-        return "redirect:/secoes";
+    @GetMapping
+    public ResponseEntity<List<AcaoSecao>> listarAcoes(){
+        return ResponseEntity.ok(acaoService.listarAcoes());
     }
 
-    @PostMapping("/editar/{id}")
-    public String atualizarRegistro(@PathVariable Long id, AcaoSecaoDto formulario) {
-        acaoService.atualizarRegistro(id, formulario);
-        return "redirect:/secoes";
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AcaoSecao> atualizarRegistro(@PathVariable Long id, @RequestBody AcaoSecaoDto formulario) {
+        return ResponseEntity.ok(acaoService.atualizarRegistro(id, formulario));
     }
 
-    @PostMapping("/remover/{id}")
-    public String apagarRegistro(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> apagarRegistro(@PathVariable Long id) {
         acaoService.apagarRegistro(id);
-        return "redirect:/secoes";
+        return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/entradas/remover")
-    public String apagarRegistrosEntradas() {
-        acaoService.apagarTodosTipoEntrada();
-        return "redirect:/secoes";
-    }
-
-    @PostMapping("/saidas/remover")
-    public String apagarRegistrosSaidas() {
-        acaoService.apagarTodosTipoSaida();
-        return "redirect:/secoes";
-    }
-
-    @PostMapping("/remover-tudo")
-    public String apagarTudo() {
+    @DeleteMapping
+    public ResponseEntity<Void> apagarTodos() {
         acaoService.apagarTodos();
-        return "redirect:/secoes";
+        return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/tipo")
+    public ResponseEntity<Void> apagarPorTipo(@RequestParam TipoAcaoSecao tipo) {
+        acaoService.apagarPorTipo(tipo);
+        return ResponseEntity.noContent().build();
+    }
 }

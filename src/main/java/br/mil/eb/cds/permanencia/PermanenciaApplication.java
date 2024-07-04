@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ControleEntradaSaidaApplication {
+public class PermanenciaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ControleEntradaSaidaApplication.class, args);
+		SpringApplication.run(PermanenciaApplication.class, args);
 	}
 
 }

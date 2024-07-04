@@ -1,4 +1,4 @@
-package br.mil.eb.cds.permanencia.excepton;
+package br.mil.eb.cds.permanencia.infra.excepton;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

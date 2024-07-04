@@ -16,6 +16,17 @@ public class AcaoSecaoService {
         this.acaoRepository = acaoRepository;
     }
 
+    public AcaoSecao salvarAcao(AcaoSecaoDto formulario) {
+        AcaoSecao registro = new AcaoSecao();
+        registro.setTipo(formulario.tipo());
+        registro.setDivSec(formulario.divSec());
+        registro.setPostoGrad(formulario.postoGrad());
+        registro.setNomeGuerra(formulario.nomeGuerra().toUpperCase());
+        registro.setHorario(formulario.horario());
+        return acaoRepository.save(registro);
+    }
+
+    @Deprecated
     public AcaoSecao salvarEntrada(AcaoSecaoDto formulario) {
         AcaoSecao registro = new AcaoSecao();
         registro.setTipo(TipoAcaoSecao.ENTRADA);
@@ -26,23 +37,28 @@ public class AcaoSecaoService {
         return acaoRepository.save(registro);
     }
 
-    public void salvarSaida(AcaoSecaoDto formulario) {
+    @Deprecated
+    public AcaoSecao salvarSaida(AcaoSecaoDto formulario) {
         AcaoSecao registro = new AcaoSecao();
         registro.setTipo(TipoAcaoSecao.SAIDA);
         registro.setDivSec(formulario.divSec());
         registro.setPostoGrad(formulario.postoGrad());
         registro.setNomeGuerra(formulario.nomeGuerra().toUpperCase());
         registro.setHorario(formulario.horario());
-        acaoRepository.save(registro);
+        return acaoRepository.save(registro);
     }
 
-    public void atualizarRegistro(Long id, AcaoSecaoDto formulario) {
+    public List<AcaoSecao> listarAcoes(){
+        return acaoRepository.findAll();
+    }
+
+    public AcaoSecao atualizarRegistro(Long id, AcaoSecaoDto formulario) {
         AcaoSecao registro = acaoRepository.getReferenceById(id);
         registro.setDivSec(formulario.divSec());
         registro.setPostoGrad(formulario.postoGrad());
         registro.setNomeGuerra(formulario.nomeGuerra().toUpperCase());
         registro.setHorario(formulario.horario());
-        acaoRepository.save(registro);
+        return acaoRepository.save(registro);
     }
 
     public void apagarRegistro(Long id) {
@@ -57,6 +73,9 @@ public class AcaoSecaoService {
         acaoRepository.deleteByTipo(TipoAcaoSecao.SAIDA);
     }
 
+    public void apagarPorTipo(TipoAcaoSecao tipo) {
+        acaoRepository.deleteByTipo(tipo);
+    }
 
     public void apagarTodos() {
         acaoRepository.deleteAll();
