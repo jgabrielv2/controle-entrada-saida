@@ -20,14 +20,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/exportar")
-public class ExportacaoController {
+public class ExportacaoWebController {
 
     private final AcaoSecaoService acaoService;
     private final RegistroVisitanteCivilService civilservice;
     private final RegistroVisitanteMilitarService militarService;
 
 
-    public ExportacaoController(RegistroVisitanteCivilService civilservice, RegistroVisitanteMilitarService militarService, AcaoSecaoService acaoService) {
+    public ExportacaoWebController(RegistroVisitanteCivilService civilservice, RegistroVisitanteMilitarService militarService, AcaoSecaoService acaoService) {
         this.civilservice = civilservice;
         this.militarService = militarService;
         this.acaoService = acaoService;
